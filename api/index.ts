@@ -4,7 +4,7 @@ const port = 3000;
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log(process.env);
+console.log(process.env.apiUrl);
 const apiUrl = process.env.apiUrl;
 app.use(express.static("public"));
 
