@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link href="http://localhost:3000/output.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/faec98a4fe.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <h1>Hello</h1>
+    <div
+      class="fixed top-0 left-0 right-0 w-[90vw] bg-[#201c1c] mx-auto h-[20vh] flex justify-between items-center"
+    >
+      <input
+        type="text"
+        id="nameInput"
+        class="border-0 w-[520px] h-[57px] bg-[#3C3838] pl-[35px] rounded-3xl text-white font-bold"
+        placeholder="Name..."
+      />
+      <div class="flex justify-between items-center">
+        <input
+          id="avatar"
+          type="file"
+          class="text-sm text-white file:mr-5 file:py-3 file:px-10 file:rounded-full file:border-0 file:text-md file:font-semibold file:text-white file:bg-gradient-to-r file:from-blue-600 file:to-[#FF0099] hover:file:cursor-pointer hover:file:opacity-80"
+        />
+        <button
+          onclick="submitForm()"
+          class="bg-[#FF0099] w-[80px] h-[57px] rounded-3xl ml-3 flex justify-center items-center"
+        >
+          <i class="fa-solid fa-check text-white text-[20px]"></i>
+        </button>
+      </div>
+    </div>
+    <!-- user detail section start here... -->
+    <div
+      class="hidden text-[#ff0011] w-[90vw] mx-auto pl-[0.6em] mt-[20vh]"
+      id="errTag"
+    ></div>
+    <div class="mt-[20vh]" id="dataContainer"></div>
     <script src="./script.js"></script>
   </body>
 </html>
