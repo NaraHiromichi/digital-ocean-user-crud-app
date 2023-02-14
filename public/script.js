@@ -12,7 +12,7 @@ const fetchData = async () => {
   removeChildElements();
   console.log("inside ", API_URL);
   if (API_URL) {
-    const res = await fetch(`${API_URL}/api/users`);
+    const res = await fetch(`${API_URL}/users`);
     const data = await res.json();
     console.log(dataTag.innerHTML);
     dataTag.innerHTML = "";
@@ -46,14 +46,14 @@ fetchData();
 
 const handleUploadPhoto = async () => {
   const inputTag = document.querySelector("#uploadFileInput");
-  const res = await fetch(`${API_URL}/api/uploadFile`, {
+  const res = await fetch(`${API_URL}/uploadFile`, {
     method: "POST",
     body: inputTag.files[0],
   });
 };
 const handleAddName = async () => {
   const nameInputTag = document.querySelector("#nameInput");
-  const res = await fetch(`${API_URL}/api/nameAdd`, {
+  const res = await fetch(`${API_URL}/nameAdd`, {
     method: "POST",
     body: JSON.stringify(nameInputTag.value),
   });
@@ -65,11 +65,10 @@ const submitForm = async () => {
   if (inputTag.files.length > 0 && nameInputTag.value) {
     errTag.classList.replace("block", "hidden");
     const formData = new FormData();
-    formData.append("name", nameInputTag.value);
-    for (let i = 0; i < inputTag.files.length; i++) {
-      formData.append("file", inputTag.files[i]);
-    }
-    const res = await fetch(`${API_URL}/api/uploadFile`, {
+    // formData.append("name", nameInputTag.value);
+    formData.append("name", nameInputTag.value)
+    formData.append("file", inputTag.files[0]);
+    const res = await fetch(`${API_URL}/uploadFile`, {
       method: "POST",
       body: formData,
     });
@@ -89,7 +88,7 @@ const submitForm = async () => {
 
 const handleDeleteUser = async (e) => {
   const idToDelete = e.target.id;
-  const res = await fetch(`${API_URL}/api/deleteUser`, {
+  const res = await fetch(`${API_URL}/deleteUser`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
