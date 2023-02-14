@@ -12,7 +12,7 @@ const fetchData = async () => {
   removeChildElements();
   console.log("inside ", API_URL);
   if (API_URL) {
-    const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/users`);
+    const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/api/users`);
     const data = await res.json();
     console.log(dataTag.innerHTML);
     dataTag.innerHTML = "";
@@ -46,14 +46,14 @@ fetchData();
 
 const handleUploadPhoto = async () => {
   const inputTag = document.querySelector("#uploadFileInput");
-  const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/uploadFile`, {
+  const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/api/uploadFile`, {
     method: "POST",
     body: inputTag.files[0],
   });
 };
 const handleAddName = async () => {
   const nameInputTag = document.querySelector("#nameInput");
-  const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/nameAdd`, {
+  const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/api/nameAdd`, {
     method: "POST",
     body: JSON.stringify(nameInputTag.value),
   });
@@ -68,7 +68,7 @@ const submitForm = async () => {
     // formData.append("name", nameInputTag.value);
     formData.append("name", nameInputTag.value)
     formData.append("file", inputTag.files[0]);
-    const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/uploadFile`, {
+    const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/api/uploadFile`, {
       method: "POST",
       body: formData,
     });
@@ -88,7 +88,7 @@ const submitForm = async () => {
 
 const handleDeleteUser = async (e) => {
   const idToDelete = e.target.id;
-  const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/deleteUser`, {
+  const res = await fetch(`https://digital-ocean-user-crud-app.vercel.app/api/deleteUser`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
