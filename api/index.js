@@ -10,7 +10,7 @@ const s3 = new aws.S3({
   accessKeyId: "DO00AGWGBAWFVGJKUVTX",
   secretAccessKey: "83ckcc4GSag+spdD345p1kZ//5rCY0DWk9OZJ4AE03U",
 });
-const port = 3000;
+const port = 443;
 
 let users = [
   {
@@ -50,12 +50,11 @@ app.get("/api/users", (req, res) => {
 app.post("/api/uploadFile", (req, res, next) => {
   const randomString = uuidv4();
   const form = new formidable.IncomingForm();
-  form.uploadDir = "./";
+  // form.uploadDir = "./";
   form.keepExtensions = true;
   let newUser = {};
   form.parse(req, async (err, fields, files) => {
-    // res.send(fields);
-    // if (err) return res.send(500); // Read file
+    if (err) return res.send(500); // Read file
     const file = fs.readFileSync(files.file.path);
     newUser = {
       id: randomString,
