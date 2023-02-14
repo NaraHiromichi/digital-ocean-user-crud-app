@@ -54,7 +54,8 @@ app.post("/api/uploadFile", (req, res, next) => {
   form.keepExtensions = true;
   let newUser = {};
   form.parse(req, async (err, fields, files) => {
-    if (err) return res.send(err); // Read file
+    res.send(fields);
+    if (err) return res.send(500); // Read file
     const file = fs.readFileSync(files.file.path);
     newUser = {
       id: randomString,
